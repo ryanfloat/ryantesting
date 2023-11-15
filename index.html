@@ -1,33 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
     posthog.init('phc_HSOq8kTiQCTabhgNCTghUcwiGAeU0H2dpNRttLgQ1pE',{api_host:'https://eu.posthog.com'})
 </script>
+
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Image Page</title>
+    <title>Simple Project Dashboard</title>
     <style>
-        /* Ensure full viewport height */
-        html, body {
-            height: 100%;
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background: #f4f4f4;
         }
-        /* Set the background image */
-        body {
-            background-image: url('https://github.com/ryanfloat/ryantesting/blob/1e2f29db4b67ca0c77ab881bdd9215d62c7a1878/floatbg.jpeg'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        /* Add additional styles as needed */
+        .project {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .project:last-child {
+            border-bottom: none;
+        }
+        .project-title {
+            color: #333;
+            font-size: 16px;
+            margin: 0 0 5px 0;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+        .project-meta span {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- Content of your page here. The background will be the image. -->
-
+    <div class="container">
+        <h1>Projects</h1>
+        <div class="project">
+            <h2 class="project-title">Brand Overhaul</h2>
+            <p class="project-meta">
+                <span>Client: Acme Corp.</span>
+                <span>Start: 10 Nov 2022</span>
+                <span>End: 19 Oct 2023</span>
+            </p>
+        </div>
+        <!-- Repeat for each project -->
+    </div>
 </body>
 </html>
