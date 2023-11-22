@@ -1,56 +1,84 @@
-
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo site</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Float Mockup with Webflow & Fallback</title>
+<style>
+  body { display: flex; flex-wrap: wrap; margin: 0; height: 100vh; font-family: Arial, sans-serif; }
+  .login-area { 
+    width: 50%;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-area, .fallback-content { width: 50%; height: 100vh; }
+  .fallback-content { display: none; /* Hidden by default */ }
+  form { max-width: 300px; }
+  input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  button {
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover { background-color: #0056b3; }
+  iframe { border: none; }
+</style>
+<script>
+  let timeout;
 
-    <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_HSOq8kTiQCTabhgNCTghUcwiGAeU0H2dpNRttLgQ1pE',{api_host:'https://eu.posthog.com'})
+  function handleLoad() {
+    // Cancel the timeout when the iframe loads successfully
+    clearTimeout(timeout);
+  }
+
+  function handleTimeout() {
+    // Hide the iframe
+    document.getElementById('webflow-iframe').style.display = 'none';
+    // Show the fallback content
+    document.getElementById('fallback-content').style.display = 'block';
+  }
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Set a timeout for 10 seconds (10000 milliseconds)
+    timeout = setTimeout(handleTimeout, 10000);
+  });
 </script>
-    
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #333;
-        }
-        .header {
-            background-color: #0091ff;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-        }
-        .footer {
-            background-color: #f4f4f4;
-            color: #333;
-            padding: 10px;
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Welcome!</h1>
-    </div>
-    <div class="content">
-        <h2>Welcome to the demo</h2>
-        <p>Public testing page, no private data should be stored here.</p>
-    </div>
-    <div class="footer">
-        <p>Demo Site</p>
-    </div>
+
+<div class="login-area">
+  <!-- Simple login form -->
+  <form action="/login" method="post">
+    <input type="email" id="email" name="email" placeholder="Email">
+    <input type="password" id="password" name="password" placeholder="Password">
+    <button type="submit">Sign in</button>
+    <!-- Add a Google sign-in button here if needed -->
+  </form>
+</div>
+
+<div class="content-area">
+  <!-- Webflow iframe -->
+  <iframe id="webflow-iframe" src="your-webflow-url" width="100%" height="100%" onload="handleLoad()"></iframe>
+</div>
+
+<div id="fallback-content" class="fallback-content">
+  <!-- Fallback content -->
+  <p>Content could not be loaded. Please try again later.</p>
+</div>
+
 </body>
 </html>
